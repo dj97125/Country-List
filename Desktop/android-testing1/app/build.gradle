@@ -115,4 +115,5 @@ dependencies {
     androidTestImplementation "org.mockito:mockito-android:3.2.4"
     //For testing more advance view in espresso like datepicker and recyclerviews
     androidTestImplementation "androidx.test.espresso:espresso-contrib:3.4.0"
+    androidTestImplementation "androidx.arch.core:core-testing:$archTestingVersion"
 }

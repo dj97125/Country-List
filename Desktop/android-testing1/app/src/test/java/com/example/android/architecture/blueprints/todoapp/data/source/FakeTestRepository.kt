@@ -5,14 +5,20 @@ import androidx.lifecycle.MutableLiveData
 import com.example.android.architecture.blueprints.todoapp.data.Result
 import com.example.android.architecture.blueprints.todoapp.data.Task
 import kotlinx.coroutines.runBlocking
+import com.example.android.architecture.blueprints.todoapp.data.Result.Error
+import com.example.android.architecture.blueprints.todoapp.data.Result.Success
 
 class FakeTestRepository: TasksRepository {
 
+    private var shouldReturnError = false
 
     var tasksServiceData: LinkedHashMap<String, Task> = LinkedHashMap()
 
     private val observableTasks = MutableLiveData<Result<List<Task>>>()
 
+    fun setReturnError(value: Boolean) {
+        shouldReturnError = value
+    }
 
     fun addTasks(vararg tasks: Task) {
         for (task in tasks) {
@@ -22,7 +28,10 @@ class FakeTestRepository: TasksRepository {
     }
 
     override suspend fun getTasks(forceUpdate: Boolean): Result<List<Task>> {
-        return Result.Success(tasksServiceData.values.toList())
+        if (shouldReturnError) {
+            return Error(Exception("Test exception"))
+        }
+        return Success(tasksServiceData.values.toList())
     }
 
     override suspend fun refreshTasks() {
@@ -34,27 +43,36 @@ class FakeTestRepository: TasksRepository {
         return observableTasks
     }
 
+    override suspend fun completeTask(task: Task) {
+        val completedTask = task.copy(isCompleted = true)
+        tasksServiceData[task.id] = completedTask
+        refreshTasks()
+    }
     override suspend fun refreshTask(taskId: String) {
+        TODO()
+    }
 
+    override suspend fun getTask(taskId: String, forceUpdate: Boolean): Result<Task> {
+        if (shouldReturnError) {
+            return Result.Error(Exception("Test exception"))
+        }
+        tasksServiceData[taskId]?.let {
+            return Result.Success(it)
+        }
+        return Error(Exception("Could not find task"))
     }
 
     override fun observeTask(taskId: String): LiveData<Result<Task>> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getTask(taskId: String, forceUpdate: Boolean): Result<Task> {
-        TODO("Not yet implemented")
-    }
+
 
     override suspend fun saveTask(task: Task) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun completeTask(task: Task) {
-        val completedTask = task.copy(isCompleted = true)
-        tasksServiceData[task.id] = completedTask
-        refreshTasks()
-    }
+
 
     override suspend fun completeTask(taskId: String) {
         TODO("Not yet implemented")
