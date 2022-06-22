@@ -5,16 +5,17 @@ import com.example.countrylist.Common.StateAction
 import com.example.countrylist.Model.Local.Dao.CountryDao
 import com.example.countrylist.Model.Network.CountryRepository.NetworkRepository
 import com.example.countrylist.Model.Network.CountryResponse.CountriesResponseItem
+import com.example.countrylist.util.MainCoroutineRule
 import com.google.common.truth.Truth.assertThat
 import io.mockk.clearAllMocks
+import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.TestScope
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
-import kotlinx.coroutines.test.resetMain
+
+import kotlinx.coroutines.test.*
 import org.junit.*
 import org.junit.Assert.assertEquals
 import java.lang.Exception
@@ -24,6 +25,11 @@ class NetworkViewModelTest {
 
     @get:Rule
     var rule = InstantTaskExecutorRule()
+
+    @ExperimentalCoroutinesApi
+    @get:Rule
+    var mainCoroutineRule = MainCoroutineRule()
+
     lateinit var subject: NetworkViewModel
     lateinit var repository: NetworkRepository
     lateinit var countryDao: CountryDao
@@ -33,12 +39,14 @@ class NetworkViewModelTest {
     @Before
     fun setUpTest() {
         repository = mockk()
-        subject = NetworkViewModel(repository, testScopeCoroutine,countryDao)
+        subject = NetworkViewModel(repository, testScopeCoroutine)
     }
 
     @Test
-    fun `get country list when fetching data from server returns SUCCESS response`() {
-        every {
+    fun `get country list when fetching data from server returns SUCCESS response`() = mainCoroutineRule.runBlockingTest  {
+        //coEvery for suspend functions
+        //Every for functions
+        coEvery {
             repository.countryCached()
         } returns flowOf(
             StateAction.SUCCESS(
@@ -63,8 +71,8 @@ class NetworkViewModelTest {
     }
 
     @Test
-    fun `get country list when fetching data from server returns LOADING response`() {
-        every {
+    fun `get country list when fetching data from server returns LOADING response`() = mainCoroutineRule.runBlockingTest  {
+        coEvery {
             repository.countryCached()
         } returns flowOf(StateAction.LOADING)
 
@@ -80,8 +88,8 @@ class NetworkViewModelTest {
     }
 
     @Test
-    fun `get country list when fetching data from server returns ERROR response`() {
-        every {
+    fun `get country list when fetching data from server returns ERROR response`() = mainCoroutineRule.runBlockingTest  {
+        coEvery {
             repository.countryCached()
         } returns flowOf(StateAction.ERROR(Exception("Error fetching data from server")))
 

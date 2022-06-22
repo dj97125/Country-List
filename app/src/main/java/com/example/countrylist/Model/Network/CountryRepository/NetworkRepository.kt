@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 interface NetworkRepository {
-    fun countryCached(): Flow<StateAction>
+    suspend fun countryCached(): Flow<StateAction>
 }
 
 class NetworkRepositoryImpl @Inject constructor(
@@ -17,7 +17,7 @@ class NetworkRepositoryImpl @Inject constructor(
     private val dao: CountryDao
 ) : NetworkRepository {
 
-    override fun countryCached() = flow {
+    override suspend fun countryCached() = flow {
         emit(StateAction.LOADING)
         try {
             val connected = InternetCheck()
