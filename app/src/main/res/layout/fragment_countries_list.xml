@@ -34,6 +34,7 @@
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layoutAnimation="@anim/layout_animation"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/countries_list_card_view" />

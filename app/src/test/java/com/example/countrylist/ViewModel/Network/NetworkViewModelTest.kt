@@ -32,7 +32,6 @@ class NetworkViewModelTest {
 
     lateinit var subject: NetworkViewModel
     lateinit var repository: NetworkRepository
-    lateinit var countryDao: CountryDao
     private val testDispatcher = UnconfinedTestDispatcher()
     private val testScopeCoroutine = TestScope(testDispatcher)
 
