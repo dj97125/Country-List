@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CountryList.iml" filepath="$PROJECT_DIR$/.idea/modules/CountryList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/androiddata/CountryList.androiddata.iml" filepath="$PROJECT_DIR$/.idea/modules/androiddata/CountryList.androiddata.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/androiddata/CountryList.androiddata.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/androiddata/CountryList.androiddata.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/androiddata/CountryList.androiddata.main.iml" filepath="$PROJECT_DIR$/.idea/modules/androiddata/CountryList.androiddata.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/androiddata/CountryList.androiddata.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/androiddata/CountryList.androiddata.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CountryList.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CountryList.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CountryList.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CountryList.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CountryList.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CountryList.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CountryList.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CountryList.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/CountryList.usecases.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/CountryList.usecases.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/usecases/CountryList.usecases.main.iml" filepath="$PROJECT_DIR$/.idea/modules/usecases/CountryList.usecases.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/usecases/CountryList.usecases.test.iml" filepath="$PROJECT_DIR$/.idea/modules/usecases/CountryList.usecases.test.iml" />
+    </modules>
+  </component>
+</project>

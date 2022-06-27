@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/consultant/Desktop/Country-List-develop/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_countries_list.xml",
+        "source": "/Users/consultant/Desktop/Country-List-develop/app/src/main/res/layout/fragment_countries_list.xml"
+    },
+    {
+        "merged": "/Users/consultant/Desktop/Country-List-develop/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/countries_list_card_view.xml",
+        "source": "/Users/consultant/Desktop/Country-List-develop/app/src/main/res/layout/countries_list_card_view.xml"
+    },
+    {
+        "merged": "/Users/consultant/Desktop/Country-List-develop/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_main.xml",
+        "source": "/Users/consultant/Desktop/Country-List-develop/app/src/main/res/layout/activity_main.xml"
+    }
+]

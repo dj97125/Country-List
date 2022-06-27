@@ -1,0 +1,176 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.countrylist"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="32" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:6:5-67
+11-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:6:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:7:5-79
+12-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:7:22-76
+13    <uses-permission android:name="android.permission.REORDER_TASKS" />
+13-->[androidx.fragment:fragment-testing:1.4.1] /Users/consultant/.gradle/caches/transforms-3/7716e8116a648bc2ba1522838f220deb/transformed/fragment-testing-1.4.1/AndroidManifest.xml:25:5-72
+13-->[androidx.fragment:fragment-testing:1.4.1] /Users/consultant/.gradle/caches/transforms-3/7716e8116a648bc2ba1522838f220deb/transformed/fragment-testing-1.4.1/AndroidManifest.xml:25:22-69
+14
+15    <queries>
+15-->[androidx.test:runner:1.5.0-alpha03] /Users/consultant/.gradle/caches/transforms-3/47fa2839bfdadd3c2aeb234238b2901b/transformed/runner-1.5.0-alpha03/AndroidManifest.xml:24:5-28:15
+16        <package android:name="androidx.test.orchestrator" />
+16-->[androidx.test:runner:1.5.0-alpha03] /Users/consultant/.gradle/caches/transforms-3/47fa2839bfdadd3c2aeb234238b2901b/transformed/runner-1.5.0-alpha03/AndroidManifest.xml:25:9-62
+16-->[androidx.test:runner:1.5.0-alpha03] /Users/consultant/.gradle/caches/transforms-3/47fa2839bfdadd3c2aeb234238b2901b/transformed/runner-1.5.0-alpha03/AndroidManifest.xml:25:18-59
+17        <package android:name="androidx.test.services" />
+17-->[androidx.test:runner:1.5.0-alpha03] /Users/consultant/.gradle/caches/transforms-3/47fa2839bfdadd3c2aeb234238b2901b/transformed/runner-1.5.0-alpha03/AndroidManifest.xml:26:9-58
+17-->[androidx.test:runner:1.5.0-alpha03] /Users/consultant/.gradle/caches/transforms-3/47fa2839bfdadd3c2aeb234238b2901b/transformed/runner-1.5.0-alpha03/AndroidManifest.xml:26:18-55
+18        <package android:name="com.google.android.apps.common.testing.services" />
+18-->[androidx.test:runner:1.5.0-alpha03] /Users/consultant/.gradle/caches/transforms-3/47fa2839bfdadd3c2aeb234238b2901b/transformed/runner-1.5.0-alpha03/AndroidManifest.xml:27:9-83
+18-->[androidx.test:runner:1.5.0-alpha03] /Users/consultant/.gradle/caches/transforms-3/47fa2839bfdadd3c2aeb234238b2901b/transformed/runner-1.5.0-alpha03/AndroidManifest.xml:27:18-80
+19    </queries>
+20
+21    <application
+21-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:9:5-29:19
+22        android:name="com.example.countrylist.di.CountryApp"
+22-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:10:9-38
+23        android:allowBackup="true"
+23-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:11:9-35
+24        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+24-->[androidx.core:core:1.7.0] /Users/consultant/.gradle/caches/transforms-3/d41faa17b65e9450f84af81944708e81/transformed/core-1.7.0/AndroidManifest.xml:24:18-86
+25        android:dataExtractionRules="@xml/data_extraction_rules"
+25-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:12:9-65
+26        android:debuggable="true"
+27        android:extractNativeLibs="false"
+28        android:fullBackupContent="@xml/backup_rules"
+28-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:13:9-54
+29        android:icon="@mipmap/ic_launcher"
+29-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:14:9-43
+30        android:label="@string/app_name"
+30-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:15:9-41
+31        android:networkSecurityConfig="@xml/network_security_config"
+31-->/Users/consultant/Desktop/Country-List-develop/app/src/debug/AndroidManifest.xml:7:9-69
+32        android:roundIcon="@mipmap/ic_launcher_round"
+32-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:16:9-54
+33        android:supportsRtl="true"
+33-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:17:9-35
+34        android:testOnly="true"
+35        android:theme="@style/Theme.CountryList" >
+35-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:18:9-49
+36        <activity
+36-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:20:9-28:20
+37            android:name="com.example.countrylist.View.Network.MainActivity"
+37-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:21:13-54
+38            android:exported="true" >
+38-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:22:13-36
+39            <intent-filter>
+39-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:23:13-27:29
+40                <action android:name="android.intent.action.MAIN" />
+40-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:24:17-69
+40-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:24:25-66
+41
+42                <category android:name="android.intent.category.LAUNCHER" />
+42-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:26:17-77
+42-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:26:27-74
+43            </intent-filter>
+44        </activity>
+45        <activity
+45-->[androidx.fragment:fragment-testing:1.4.1] /Users/consultant/.gradle/caches/transforms-3/7716e8116a648bc2ba1522838f220deb/transformed/fragment-testing-1.4.1/AndroidManifest.xml:28:9-37:20
+46            android:name="androidx.fragment.app.testing.FragmentScenario$EmptyFragmentActivity"
+46-->[androidx.fragment:fragment-testing:1.4.1] /Users/consultant/.gradle/caches/transforms-3/7716e8116a648bc2ba1522838f220deb/transformed/fragment-testing-1.4.1/AndroidManifest.xml:29:13-96
+47            android:exported="true"
+47-->[androidx.fragment:fragment-testing:1.4.1] /Users/consultant/.gradle/caches/transforms-3/7716e8116a648bc2ba1522838f220deb/transformed/fragment-testing-1.4.1/AndroidManifest.xml:30:13-36
+48            android:multiprocess="true"
+48-->[androidx.fragment:fragment-testing:1.4.1] /Users/consultant/.gradle/caches/transforms-3/7716e8116a648bc2ba1522838f220deb/transformed/fragment-testing-1.4.1/AndroidManifest.xml:31:13-40
+49            android:taskAffinity=""
+49-->[androidx.fragment:fragment-testing:1.4.1] /Users/consultant/.gradle/caches/transforms-3/7716e8116a648bc2ba1522838f220deb/transformed/fragment-testing-1.4.1/AndroidManifest.xml:32:13-36
+50            android:theme="@style/FragmentScenarioEmptyFragmentActivityTheme" >
+50-->[androidx.fragment:fragment-testing:1.4.1] /Users/consultant/.gradle/caches/transforms-3/7716e8116a648bc2ba1522838f220deb/transformed/fragment-testing-1.4.1/AndroidManifest.xml:33:13-78
+51            <intent-filter>
+51-->[androidx.fragment:fragment-testing:1.4.1] /Users/consultant/.gradle/caches/transforms-3/7716e8116a648bc2ba1522838f220deb/transformed/fragment-testing-1.4.1/AndroidManifest.xml:34:13-36:29
+52                <action android:name="android.intent.action.MAIN" />
+52-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:24:17-69
+52-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:24:25-66
+53            </intent-filter>
+54        </activity>
+55
+56        <provider
+56-->[androidx.emoji2:emoji2:1.0.0] /Users/consultant/.gradle/caches/transforms-3/02b9b647610224138ee5dae6e60f0018/transformed/emoji2-1.0.0/AndroidManifest.xml:26:9-34:20
+57            android:name="androidx.startup.InitializationProvider"
+57-->[androidx.emoji2:emoji2:1.0.0] /Users/consultant/.gradle/caches/transforms-3/02b9b647610224138ee5dae6e60f0018/transformed/emoji2-1.0.0/AndroidManifest.xml:27:13-67
+58            android:authorities="com.example.countrylist.androidx-startup"
+58-->[androidx.emoji2:emoji2:1.0.0] /Users/consultant/.gradle/caches/transforms-3/02b9b647610224138ee5dae6e60f0018/transformed/emoji2-1.0.0/AndroidManifest.xml:28:13-68
+59            android:exported="false" >
+59-->[androidx.emoji2:emoji2:1.0.0] /Users/consultant/.gradle/caches/transforms-3/02b9b647610224138ee5dae6e60f0018/transformed/emoji2-1.0.0/AndroidManifest.xml:29:13-37
+60            <meta-data
+60-->[androidx.emoji2:emoji2:1.0.0] /Users/consultant/.gradle/caches/transforms-3/02b9b647610224138ee5dae6e60f0018/transformed/emoji2-1.0.0/AndroidManifest.xml:31:13-33:52
+61                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+61-->[androidx.emoji2:emoji2:1.0.0] /Users/consultant/.gradle/caches/transforms-3/02b9b647610224138ee5dae6e60f0018/transformed/emoji2-1.0.0/AndroidManifest.xml:32:17-75
+62                android:value="androidx.startup" />
+62-->[androidx.emoji2:emoji2:1.0.0] /Users/consultant/.gradle/caches/transforms-3/02b9b647610224138ee5dae6e60f0018/transformed/emoji2-1.0.0/AndroidManifest.xml:33:17-49
+63            <meta-data
+63-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/consultant/.gradle/caches/transforms-3/18ec074ca90d255204447297c70376ab/transformed/lifecycle-process-2.4.0/AndroidManifest.xml:31:13-33:52
+64                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+64-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/consultant/.gradle/caches/transforms-3/18ec074ca90d255204447297c70376ab/transformed/lifecycle-process-2.4.0/AndroidManifest.xml:32:17-78
+65                android:value="androidx.startup" />
+65-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/consultant/.gradle/caches/transforms-3/18ec074ca90d255204447297c70376ab/transformed/lifecycle-process-2.4.0/AndroidManifest.xml:33:17-49
+66        </provider>
+67
+68        <activity
+68-->[androidx.test:core:1.4.0] /Users/consultant/.gradle/caches/transforms-3/8b98fe6993c77e51a07cde87fe052b26/transformed/core-1.4.0/AndroidManifest.xml:27:9-34:20
+69            android:name="androidx.test.core.app.InstrumentationActivityInvoker$BootstrapActivity"
+69-->[androidx.test:core:1.4.0] /Users/consultant/.gradle/caches/transforms-3/8b98fe6993c77e51a07cde87fe052b26/transformed/core-1.4.0/AndroidManifest.xml:28:13-99
+70            android:exported="true"
+70-->[androidx.test:core:1.4.0] /Users/consultant/.gradle/caches/transforms-3/8b98fe6993c77e51a07cde87fe052b26/transformed/core-1.4.0/AndroidManifest.xml:29:13-36
+71            android:theme="@android:style/Theme" >
+71-->[androidx.test:core:1.4.0] /Users/consultant/.gradle/caches/transforms-3/8b98fe6993c77e51a07cde87fe052b26/transformed/core-1.4.0/AndroidManifest.xml:30:13-49
+72            <intent-filter>
+72-->[androidx.fragment:fragment-testing:1.4.1] /Users/consultant/.gradle/caches/transforms-3/7716e8116a648bc2ba1522838f220deb/transformed/fragment-testing-1.4.1/AndroidManifest.xml:34:13-36:29
+73                <action android:name="android.intent.action.MAIN" />
+73-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:24:17-69
+73-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:24:25-66
+74            </intent-filter>
+75        </activity>
+76        <activity
+76-->[androidx.test:core:1.4.0] /Users/consultant/.gradle/caches/transforms-3/8b98fe6993c77e51a07cde87fe052b26/transformed/core-1.4.0/AndroidManifest.xml:35:9-42:20
+77            android:name="androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity"
+77-->[androidx.test:core:1.4.0] /Users/consultant/.gradle/caches/transforms-3/8b98fe6993c77e51a07cde87fe052b26/transformed/core-1.4.0/AndroidManifest.xml:36:13-95
+78            android:exported="true"
+78-->[androidx.test:core:1.4.0] /Users/consultant/.gradle/caches/transforms-3/8b98fe6993c77e51a07cde87fe052b26/transformed/core-1.4.0/AndroidManifest.xml:37:13-36
+79            android:theme="@android:style/Theme" >
+79-->[androidx.test:core:1.4.0] /Users/consultant/.gradle/caches/transforms-3/8b98fe6993c77e51a07cde87fe052b26/transformed/core-1.4.0/AndroidManifest.xml:38:13-49
+80            <intent-filter>
+80-->[androidx.fragment:fragment-testing:1.4.1] /Users/consultant/.gradle/caches/transforms-3/7716e8116a648bc2ba1522838f220deb/transformed/fragment-testing-1.4.1/AndroidManifest.xml:34:13-36:29
+81                <action android:name="android.intent.action.MAIN" />
+81-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:24:17-69
+81-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:24:25-66
+82            </intent-filter>
+83        </activity>
+84        <activity
+84-->[androidx.test:core:1.4.0] /Users/consultant/.gradle/caches/transforms-3/8b98fe6993c77e51a07cde87fe052b26/transformed/core-1.4.0/AndroidManifest.xml:43:9-50:20
+85            android:name="androidx.test.core.app.InstrumentationActivityInvoker$EmptyFloatingActivity"
+85-->[androidx.test:core:1.4.0] /Users/consultant/.gradle/caches/transforms-3/8b98fe6993c77e51a07cde87fe052b26/transformed/core-1.4.0/AndroidManifest.xml:44:13-103
+86            android:exported="true"
+86-->[androidx.test:core:1.4.0] /Users/consultant/.gradle/caches/transforms-3/8b98fe6993c77e51a07cde87fe052b26/transformed/core-1.4.0/AndroidManifest.xml:45:13-36
+87            android:theme="@android:style/Theme.Dialog" >
+87-->[androidx.test:core:1.4.0] /Users/consultant/.gradle/caches/transforms-3/8b98fe6993c77e51a07cde87fe052b26/transformed/core-1.4.0/AndroidManifest.xml:46:13-56
+88            <intent-filter>
+88-->[androidx.fragment:fragment-testing:1.4.1] /Users/consultant/.gradle/caches/transforms-3/7716e8116a648bc2ba1522838f220deb/transformed/fragment-testing-1.4.1/AndroidManifest.xml:34:13-36:29
+89                <action android:name="android.intent.action.MAIN" />
+89-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:24:17-69
+89-->/Users/consultant/Desktop/Country-List-develop/app/src/main/AndroidManifest.xml:24:25-66
+90            </intent-filter>
+91        </activity>
+92
+93        <service
+93-->[androidx.room:room-runtime:2.4.2] /Users/consultant/.gradle/caches/transforms-3/72f4da93ebf2dae7bbe9280b6c00a1dc/transformed/room-runtime-2.4.2/AndroidManifest.xml:25:9-28:40
+94            android:name="androidx.room.MultiInstanceInvalidationService"
+94-->[androidx.room:room-runtime:2.4.2] /Users/consultant/.gradle/caches/transforms-3/72f4da93ebf2dae7bbe9280b6c00a1dc/transformed/room-runtime-2.4.2/AndroidManifest.xml:26:13-74
+95            android:directBootAware="true"
+95-->[androidx.room:room-runtime:2.4.2] /Users/consultant/.gradle/caches/transforms-3/72f4da93ebf2dae7bbe9280b6c00a1dc/transformed/room-runtime-2.4.2/AndroidManifest.xml:27:13-43
+96            android:exported="false" />
+96-->[androidx.room:room-runtime:2.4.2] /Users/consultant/.gradle/caches/transforms-3/72f4da93ebf2dae7bbe9280b6c00a1dc/transformed/room-runtime-2.4.2/AndroidManifest.xml:28:13-37
+97    </application>
+98
+99</manifest>
