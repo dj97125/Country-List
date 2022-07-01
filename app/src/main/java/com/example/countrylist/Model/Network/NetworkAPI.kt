@@ -1,4 +1,4 @@
-package com.example.countrylist.Model.Network.CountriesAPI
+package com.example.countrylist.Model.Network
 
 import com.example.countrylist.Common.END_POINT_COUNTRIES
 import com.example.countrylist.Model.Network.CountryResponse.CountriesResponseItem

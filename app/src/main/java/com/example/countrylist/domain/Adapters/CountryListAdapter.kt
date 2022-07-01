@@ -1,4 +1,4 @@
-package com.example.countrylist.Model.Network.Adapters
+package com.example.countrylist.domain.Adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

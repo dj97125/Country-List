@@ -1,12 +1,10 @@
-package com.example.countrylist.Model.Local.DataBase
+package com.example.countrylist.Model.Local
 
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.countrylist.Model.Local.Dao.CountryDao
-import com.example.countrylist.Model.Local.Entities.CountryEntity
 import kotlinx.coroutines.InternalCoroutinesApi
 
 

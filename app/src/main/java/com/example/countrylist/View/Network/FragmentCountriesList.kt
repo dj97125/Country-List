@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.countrylist.Common.BaseFragment
 import com.example.countrylist.Common.StateAction
-import com.example.countrylist.Model.Network.Adapters.CountryListAdapter
+import com.example.countrylist.domain.Adapters.CountryListAdapter
 import com.example.countrylist.Model.Network.CountryResponse.CountriesResponseItem
 import com.example.countrylist.databinding.FragmentCountriesListBinding
 import dagger.hilt.android.AndroidEntryPoint

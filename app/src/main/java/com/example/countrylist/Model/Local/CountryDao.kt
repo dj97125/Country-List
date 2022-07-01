@@ -1,11 +1,10 @@
-package com.example.countrylist.Model.Local.Dao
+package com.example.countrylist.Model.Local
 
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.countrylist.Model.Local.Entities.CountryEntity
 
 @Dao
 interface CountryDao {

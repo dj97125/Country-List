@@ -2,8 +2,8 @@ package com.example.countrylist.Model.Network.CountryRepository
 
 
 import com.example.countrylist.Common.*
-import com.example.countrylist.Model.Local.Dao.CountryDao
-import com.example.countrylist.Model.Network.CountriesAPI.NetworkAPI
+import com.example.countrylist.Model.Local.CountryDao
+import com.example.countrylist.Model.Network.NetworkAPI
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -16,6 +16,7 @@ class NetworkRepositoryImpl @Inject constructor(
     private val service: NetworkAPI,
     private val dao: CountryDao
 ) : NetworkRepository {
+
 
     override suspend fun countryCached() = flow {
         emit(StateAction.LOADING)

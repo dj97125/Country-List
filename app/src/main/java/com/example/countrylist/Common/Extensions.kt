@@ -1,6 +1,6 @@
 package com.example.countrylist.Common
 
-import com.example.countrylist.Model.Local.Entities.CountryEntity
+import com.example.countrylist.Model.Local.CountryEntity
 import com.example.countrylist.Model.Network.CountryResponse.CountriesResponseItem
 
 fun CountriesResponseItem.toDomain() = CountriesResponseItem(capital, code, name, region)

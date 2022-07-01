@@ -2,14 +2,12 @@ package com.example.countrylist.ViewModel.Network
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.countrylist.Common.StateAction
-import com.example.countrylist.Model.Local.Dao.CountryDao
 import com.example.countrylist.Model.Network.CountryRepository.NetworkRepository
 import com.example.countrylist.Model.Network.CountryResponse.CountriesResponseItem
 import com.example.countrylist.util.MainCoroutineRule
 import com.google.common.truth.Truth.assertThat
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
-import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

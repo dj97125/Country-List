@@ -1,4 +1,4 @@
-package com.example.countrylist.Model.Local.Entities
+package com.example.countrylist.Model.Local
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
