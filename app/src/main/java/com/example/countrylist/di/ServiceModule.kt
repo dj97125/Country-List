@@ -66,12 +66,13 @@ class ServiceModule {
 
     @Singleton
     @Provides
+    @ProductionDB
     fun provideRoom(@ApplicationContext context: Context): CountryDataBase =
         Room.databaseBuilder(context, CountryDataBase::class.java, DATABASE_NAME).build()
 
     @Singleton
     @Provides
-    fun provideCountryDao(dataBase: CountryDataBase): CountryDao = dataBase.countryDao()
+    fun provideCountryDao(@ProductionDB dataBase: CountryDataBase): CountryDao = dataBase.countryDao()
 }
 
 @Module()

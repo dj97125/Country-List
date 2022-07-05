@@ -2,6 +2,7 @@ package com.example.countrylist.domain.Adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.example.countrylist.domain.Adapters.CountryListAdapter.NetworkViewHolder
 import androidx.recyclerview.widget.RecyclerView
 import com.example.countrylist.Model.Network.CountryResponse.CountriesResponseItem
 import com.example.countrylist.databinding.CountriesListCardViewBinding
@@ -9,7 +10,7 @@ import com.example.countrylist.databinding.CountriesListCardViewBinding
 
 class CountryListAdapter(
     private val countries: MutableList<CountriesResponseItem> = mutableListOf()
-) : RecyclerView.Adapter<CountryListAdapter.NetworkViewHolder>() {
+) : RecyclerView<CountriesResponseItem,NetworkViewHolder>() {
 
 
     fun updateData(newSchools: List<CountriesResponseItem>) {

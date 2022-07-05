@@ -5,6 +5,8 @@ import androidx.test.filters.SmallTest
 import com.example.countrylist.Model.Local.CountryDao
 import com.example.countrylist.Model.Local.CountryDataBase
 import com.example.countrylist.Model.Local.CountryEntity
+import com.example.countrylist.Model.Local.DataBase.DI.TestDB
+import com.example.countrylist.di.ServiceModule
 import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -28,7 +30,7 @@ import javax.inject.Named
 
 @ExperimentalCoroutinesApi
 //@RunWith(AndroidJUnit4::class)
-@UninstallModules(RoomModule::class)
+@UninstallModules(ServiceModule::class)
 @SmallTest
 @HiltAndroidTest
 class CountryDataBaseTest {
@@ -41,7 +43,7 @@ class CountryDataBaseTest {
     var rule = InstantTaskExecutorRule()
 
     @Inject
-    @Named("test_db")
+    @TestDB
     lateinit var dataBase: CountryDataBase
     lateinit var countryDao: CountryDao
 

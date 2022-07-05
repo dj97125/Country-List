@@ -9,13 +9,15 @@ import androidx.room.Query
 @Dao
 interface CountryDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertLocalCountry(country: List<CountryEntity>)
+    @Query("SELECT * FROM country_item")
+    suspend fun getAllCachedCountries(): List<CountryEntity>
 
     @Query("DELETE FROM country_item")
     suspend fun deleteAllCountryLocalItem()
 
-    @Query("SELECT * FROM country_item order by name")
-    suspend fun getAllCachedCountries(): List<CountryEntity>
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertLocalCountry(country: List<CountryEntity>)
+
+
 
 }

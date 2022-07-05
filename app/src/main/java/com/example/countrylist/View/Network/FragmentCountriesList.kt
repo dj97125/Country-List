@@ -70,7 +70,7 @@ class FragmentCountriesList : BaseFragment() {
             }
 
         }
-        networkViewModel.getCountryList()
+        //networkViewModel.getCountryList()
         return binding.root
     }
 

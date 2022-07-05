@@ -22,6 +22,9 @@ class NetworkViewModel @Inject constructor(
     val countryResponse: MutableLiveData<StateAction>
         get() = _countryResponse
 
+    init {
+        getCountryList()
+    }
 
     fun getCountryList() {
         coroutineScope.launch {

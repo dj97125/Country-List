@@ -4,7 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_countries_list.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/countries_list_card_view.xml" value="0.10462962962962963" />
+        <entry key="app/src/main/res/layout/fragment_countries_list.xml" value="0.165" />
       </map>
     </option>
   </component>

@@ -16,7 +16,7 @@ import javax.inject.Named
 class TestAppModule {
 
     @Provides
-    @Named("test_db")
+    @TestDB
     fun provideInMemoryDb(@ApplicationContext context: Context) =
         Room.databaseBuilder(context, CountryDataBase::class.java, DATABASE_NAME).build()
 
