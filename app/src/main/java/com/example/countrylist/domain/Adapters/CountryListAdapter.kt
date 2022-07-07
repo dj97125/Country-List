@@ -3,7 +3,7 @@ package com.example.countrylist.domain.Adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.countrylist.Model.Network.CountryResponse.CountriesResponseItem
+import com.example.countrylist.model.network.country_response.CountriesResponseItem
 import com.example.countrylist.databinding.CountriesListCardViewBinding
 
 

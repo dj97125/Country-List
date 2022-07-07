@@ -2,13 +2,13 @@ package com.example.countrylist.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.countrylist.Common.BASE_URL
-import com.example.countrylist.Common.DATABASE_NAME
-import com.example.countrylist.Model.Local.CountryDao
-import com.example.countrylist.Model.Local.CountryDataBase
-import com.example.countrylist.Model.Network.NetworkAPI
-import com.example.countrylist.Model.Network.CountryRepository.NetworkRepository
-import com.example.countrylist.Model.Network.CountryRepository.NetworkRepositoryImpl
+import com.example.countrylist.common.BASE_URL
+import com.example.countrylist.common.DATABASE_NAME
+import com.example.countrylist.model.local.CountryDao
+import com.example.countrylist.model.local.CountryDataBase
+import com.example.countrylist.model.network.NetworkAPI
+import com.example.countrylist.model.network.CountryRepository.NetworkRepository
+import com.example.countrylist.model.network.CountryRepository.NetworkRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

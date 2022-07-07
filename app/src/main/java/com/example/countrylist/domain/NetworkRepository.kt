@@ -1,9 +1,9 @@
-package com.example.countrylist.Model.Network.CountryRepository
+package com.example.countrylist.model.network.CountryRepository
 
 
-import com.example.countrylist.Common.*
-import com.example.countrylist.Model.Local.CountryDao
-import com.example.countrylist.Model.Network.NetworkAPI
+import com.example.countrylist.common.*
+import com.example.countrylist.model.local.CountryDao
+import com.example.countrylist.model.network.NetworkAPI
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

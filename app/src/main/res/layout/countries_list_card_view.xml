@@ -17,59 +17,106 @@
         android:layout_height="100dp"
         android:padding="16dp">
 
+
         <TextView
             android:id="@+id/tvCountryName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:lines="1"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBaseline_toBaselineOf="@+id/tvCountryRegion"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="15sp"
+            android:textStyle="italic"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txtCountry"
+            app:layout_constraintStart_toEndOf="@+id/txtCountry"
             tools:text="Name" />
+
         <TextView
             android:id="@+id/tvCountryRegion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:lines="1"
+            android:textSize="15sp"
+            android:textStyle="italic"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txtCountryRegion"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Region" />
+
+
+        <TextView
+            android:id="@+id/txtCountryRegion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
             android:lines="1"
             android:textSize="20sp"
-            android:textStyle="italic"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.04"
-            app:layout_constraintStart_toEndOf="@+id/tvCountryName"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.08"
-            tools:text="Region" />
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvCountryName"
+            app:layout_constraintEnd_toStartOf="@+id/tvCountryRegion"
+            android:text="Region" />
 
         <TextView
             android:id="@+id/tvCountryCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:lines="1"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textStyle="italic"
-            app:layout_constraintBaseline_toBaselineOf="@+id/tvCountryRegion"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.876"
-            app:layout_constraintStart_toEndOf="@+id/tvCountryRegion"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txtCountryCode"
+            app:layout_constraintEnd_toEndOf="@+id/tvCountryRegion"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tvCountryRegion"
             tools:text="Code" />
 
-
+        <TextView
+            android:id="@+id/txtCountryCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvCountryCapital"
+            app:layout_constraintEnd_toEndOf="@+id/txtCountryRegion"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/txtCountryRegion"
+            android:text="Code" />
 
         <TextView
             android:id="@+id/tvCountryCapital"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:lines="1"
+            android:textSize="15sp"
             android:textStyle="italic"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txtCapital"
+            app:layout_constraintEnd_toEndOf="@+id/tvCountryName"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCountryName"
-            app:layout_constraintVertical_bias="0.733"
+            app:layout_constraintStart_toStartOf="@+id/tvCountryName"
             tools:text="capital" />
+
+        <TextView
+            android:id="@+id/txtCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="Country"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtCapital"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Capital"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/txtCountry"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/txtCountry" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
