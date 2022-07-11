@@ -1,50 +1,42 @@
 package com.example.countrylist.model.network.CountryRepository
 
 
-import com.example.countrylist.common.*
-import com.example.countrylist.model.local.CountryDao
-import com.example.countrylist.model.network.NetworkAPI
+import com.example.countrylist.common.InternetCheck
+import com.example.countrylist.common.StateAction
+import com.example.countrylist.model.local.LocalDataSource
+import com.example.countrylist.model.network.RemoteDataSource
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 interface NetworkRepository {
-    suspend fun countryCached(): Flow<StateAction>
+    suspend fun countryList(): Flow<StateAction>
 }
 
 class NetworkRepositoryImpl @Inject constructor(
-    private val service: NetworkAPI,
-    private val dao: CountryDao
+    private val remoteDataSource: RemoteDataSource,
+    private val localDataSource: LocalDataSource
 ) : NetworkRepository {
 
 
-    override suspend fun countryCached() = flow {
-        emit(StateAction.LOADING)
-        try {
-            val connected = InternetCheck()
-            if (connected.isConnected()) {
-                emit(StateAction.MESSAGE("Loading data from server"))
-                val response = service.getCountriesList()
-                if (response.isSuccessful) {
-                    response.body()?.let { result ->
-                        dao.deleteAllCountryLocalItem()
-                        dao.insertLocalCountry(result.map { it.toDatabase() })
-                        emit(StateAction.SUCCESS(result.map { it.toDomain() }))
-                    } ?: throw NullResponseException()
-                } else {
-                    throw FailedResponseException()
-                }
-            } else {
-                emit(StateAction.MESSAGE("Loading from cache"))
-                val cache = dao.getAllCachedCountries()
-                if (!cache.isNullOrEmpty()) {
-                    emit(StateAction.SUCCESS(cache.map { it.toDomain() }))
-                } else {
-                    throw FailedCache()
+    override suspend fun countryList() = flow {
+        val connected = InternetCheck()
+        if (connected.isConnected()) {
+            val remoteService = remoteDataSource.countryCached()
+            remoteService.collect { stateAction ->
+                when (stateAction) {
+                    is StateAction.SUCCESS<*> -> {
+                        remoteDataSource.countryCached()
+                        localDataSource.insertLocalCountry(stateAction)
+                    }
+
+                    is StateAction.ERROR -> {
+                        localDataSource.getAllCachedCountries()
+                    }
                 }
             }
-        } catch (e: Exception) {
-            emit(StateAction.ERROR(e))
         }
+
     }
 }

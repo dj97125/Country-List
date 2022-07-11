@@ -3,6 +3,8 @@ package com.example.countrylist.model.local.DataBase.DI
 import android.content.Context
 import androidx.room.Room
 import com.example.countrylist.common.DATABASE_NAME
+import com.example.countrylist.di.ProductionDB
+import com.example.countrylist.model.local.CountryDao
 import com.example.countrylist.model.local.CountryDataBase
 import dagger.Module
 import dagger.Provides
@@ -10,14 +12,20 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Named
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class TestAppModule {
+object TestAppModule {
 
     @Provides
-    @Named("test_db")
+    @Singleton
+    @TestDB
     fun provideInMemoryDb(@ApplicationContext context: Context) =
-        Room.databaseBuilder(context, CountryDataBase::class.java, DATABASE_NAME).build()
+        Room.inMemoryDatabaseBuilder(context, CountryDataBase::class.java).build()
+
+    @Singleton
+    @Provides
+    fun provideCountryDao(@TestDB dataBase: CountryDataBase): CountryDao = dataBase.countryDao()
 
 }

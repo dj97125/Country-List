@@ -6,9 +6,15 @@ import com.example.countrylist.common.BASE_URL
 import com.example.countrylist.common.DATABASE_NAME
 import com.example.countrylist.model.local.CountryDao
 import com.example.countrylist.model.local.CountryDataBase
+import com.example.countrylist.model.local.LocalDataSource
+import com.example.countrylist.model.local.RoomDataSource
 import com.example.countrylist.model.network.NetworkAPI
 import com.example.countrylist.model.network.CountryRepository.NetworkRepository
 import com.example.countrylist.model.network.CountryRepository.NetworkRepositoryImpl
+import com.example.countrylist.model.network.CountryRepository.Orchester
+import com.example.countrylist.model.network.CountryRepository.OrchesterImpl
+import com.example.countrylist.model.network.RemoteDataSource
+import com.example.countrylist.model.network.ServiceDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -71,7 +77,7 @@ class ServiceModule {
 
     @Singleton
     @Provides
-    fun provideCountryDao(dataBase: CountryDataBase): CountryDao = dataBase.countryDao()
+    fun provideCountryDao(@ProductionDB dataBase: CountryDataBase): CountryDao = dataBase.countryDao()
 }
 
 @Module()
@@ -80,8 +86,25 @@ abstract class ViewModelModule {
 
     @Binds
     @ViewModelScoped
-    abstract fun bindRepositoryLayer(
+    abstract fun bindRepository(
         networkRepositoryImpl: NetworkRepositoryImpl
     ): NetworkRepository
+
+}
+@Module()
+@InstallIn(SingletonComponent::class)
+abstract class RepositoryModule{
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindLocalDataSource(
+        localDataSource: LocalDataSource
+    ): RoomDataSource
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindRemoteDataSource(
+        remoteDataSource: RemoteDataSource
+    ): ServiceDataSource
 
 }

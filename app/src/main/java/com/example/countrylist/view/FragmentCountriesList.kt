@@ -39,11 +39,6 @@ class FragmentCountriesList : BaseFragment() {
         }
         networkViewModel.countryResponse.observe(viewLifecycleOwner) { state ->
             when (state) {
-                is StateAction.LOADING -> {
-                    showToastMessage("Loading...")
-                    binding.recyclerView.visibility = View.GONE
-                    binding.swipeRefresh.visibility = View.GONE
-                }
                 is StateAction.SUCCESS<*> -> {
                     val retrievedCountries = state.response as List<CountriesResponseItem>
 
