@@ -7,6 +7,7 @@ fun CountriesResponseItem.toDomain() = CountriesResponseItem(capital, code, name
 fun CountryEntity.toDomain() = CountriesResponseItem(capital, code, name, region)
 fun CountriesResponseItem.toDatabase() =
     CountryEntity(
+        id = 0,
         capital = capital,
         code = code,
         name = name,

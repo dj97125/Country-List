@@ -7,12 +7,14 @@ import androidx.room.PrimaryKey
 @Entity
 data class CountryEntity(
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    val id: Int?,
     @ColumnInfo(name = "capital")
-    val capital: String,
+    val capital: String?,
     @ColumnInfo(name = "code")
-    val code: String,
+    val code: String?,
     @ColumnInfo(name = "name")
-    val name: String,
+    val name: String?,
     @ColumnInfo(name = "region")
-    val region: String
+    val region: String?
 )

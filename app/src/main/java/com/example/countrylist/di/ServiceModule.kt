@@ -11,8 +11,6 @@ import com.example.countrylist.model.local.RoomDataSource
 import com.example.countrylist.model.network.NetworkAPI
 import com.example.countrylist.model.network.CountryRepository.NetworkRepository
 import com.example.countrylist.model.network.CountryRepository.NetworkRepositoryImpl
-import com.example.countrylist.model.network.CountryRepository.Orchester
-import com.example.countrylist.model.network.CountryRepository.OrchesterImpl
 import com.example.countrylist.model.network.RemoteDataSource
 import com.example.countrylist.model.network.ServiceDataSource
 import dagger.Binds
@@ -36,7 +34,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class ServiceModule {
+object ServiceModule {
 
     @Singleton
     @Provides
@@ -73,38 +71,36 @@ class ServiceModule {
     @Singleton
     @Provides
     fun provideRoom(@ApplicationContext context: Context): CountryDataBase =
-        Room.databaseBuilder(context, CountryDataBase::class.java, DATABASE_NAME).build()
+        Room.databaseBuilder(context, CountryDataBase::class.java, DATABASE_NAME).fallbackToDestructiveMigration().build()
 
     @Singleton
     @Provides
-    fun provideCountryDao(@ProductionDB dataBase: CountryDataBase): CountryDao = dataBase.countryDao()
+    fun provideCountryDao(dataBase: CountryDataBase): CountryDao = dataBase.countryDao()
 }
 
 @Module()
 @InstallIn(ViewModelComponent::class)
-abstract class ViewModelModule {
+abstract class ViewModelBindModule {
 
     @Binds
-    @ViewModelScoped
     abstract fun bindRepository(
         networkRepositoryImpl: NetworkRepositoryImpl
     ): NetworkRepository
 
 }
+
 @Module()
 @InstallIn(SingletonComponent::class)
-abstract class RepositoryModule{
+abstract class RepositoryBindModule{
 
     @Binds
-    @ViewModelScoped
     abstract fun bindLocalDataSource(
-        localDataSource: LocalDataSource
-    ): RoomDataSource
+        roomDataSource: RoomDataSource
+    ): LocalDataSource
 
     @Binds
-    @ViewModelScoped
     abstract fun bindRemoteDataSource(
-        remoteDataSource: RemoteDataSource
-    ): ServiceDataSource
+        serviceDataSource: ServiceDataSource
+    ): RemoteDataSource
 
 }

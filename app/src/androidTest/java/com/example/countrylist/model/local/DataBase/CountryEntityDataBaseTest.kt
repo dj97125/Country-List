@@ -18,7 +18,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject
-import javax.inject.Named
 
 /**
  * Room: Google is the responsable for testing, but in an
@@ -33,7 +32,7 @@ import javax.inject.Named
 @UninstallModules(ServiceModule::class)
 @SmallTest
 @HiltAndroidTest
-class CountryDataBaseTest @Inject constructor(
+class CountryEntityDataBaseTest @Inject constructor(
    @TestDB private val dataBase: CountryDataBase
 ) {
 
@@ -65,41 +64,41 @@ class CountryDataBaseTest @Inject constructor(
 
     @Test
     fun insertLocalCountry() = runTest {
-        val country = listOf(
+        val countryEntities = listOf(
             CountryEntity( "uno", "uno", "uno", "uno"),
             CountryEntity( "dos", "dos", "dos", "dos"),
         )
-        countryDao.insertLocalCountry(country)
+        countryDao.insertLocalCountry(countryEntities)
 
         val allCountries = countryDao.getAllCachedCountries()
 
-        assertThat(allCountries).contains(country)
+        assertThat(allCountries).contains(countryEntities)
 
     }
 
     @Test
     fun deleteAllCountryLocalItem() = runTest {
-        val countryList = listOf(
+        val countryEntityLists = listOf(
             CountryEntity( "uno", "uno", "uno", "uno"),
             CountryEntity( "dos", "dos", "dos", "dos")
         )
 
-        countryDao.insertLocalCountry(countryList)
+        countryDao.insertLocalCountry(countryEntityLists)
         countryDao.deleteAllCountryLocalItem()
 
         val allCountries = countryDao.getAllCachedCountries()
 
-        assertThat(allCountries).doesNotContain(countryList)
+        assertThat(allCountries).doesNotContain(countryEntityLists)
 
     }
 
     @Test
     fun getAllCachedCountries() = runTest {
-        val countryList = listOf(
+        val countryEntityLists = listOf(
             CountryEntity( "uno", "uno", "uno", "uno"),
             CountryEntity( "dos", "dos", "dos", "dos")
         )
-        countryDao.insertLocalCountry(countryList)
+        countryDao.insertLocalCountry(countryEntityLists)
 
 
 

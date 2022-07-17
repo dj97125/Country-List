@@ -4,13 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.countrylist.common.BaseFragment
 import com.example.countrylist.common.StateAction
-import com.example.countrylist.domain.Adapters.CountryListAdapter
-import com.example.countrylist.model.network.country_response.CountriesResponseItem
 import com.example.countrylist.databinding.FragmentCountriesListBinding
+import com.example.countrylist.domain.Adapters.CountryListAdapter
+import com.example.countrylist.domain.Country
+import com.example.countrylist.model.local.CountryEntity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FragmentCountriesList : BaseFragment() {
@@ -28,6 +33,7 @@ class FragmentCountriesList : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(
                 requireContext(),
@@ -37,34 +43,41 @@ class FragmentCountriesList : BaseFragment() {
 
             adapter = networkAdapter
         }
-        networkViewModel.countryResponse.observe(viewLifecycleOwner) { state ->
-            when (state) {
-                is StateAction.SUCCESS<*> -> {
-                    val retrievedCountries = state.response as List<CountriesResponseItem>
 
-                    retrievedCountries.let {
-                        networkAdapter.updateData(it)
-                    }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                networkViewModel.countryResponse.collect { state ->
+                    when (state) {
+                        is StateAction.SUCCESS<*> -> {
+                            showToastMessage("Loading from server")
+                            val retrievedCountries = state.response as List<Country>
 
-                    binding.recyclerView.visibility = View.VISIBLE
-                    binding.swipeRefresh.visibility = View.VISIBLE
+                            networkAdapter.updateData(retrievedCountries)
+
+                            binding.recyclerView.visibility = View.VISIBLE
+                            binding.swipeRefresh.visibility = View.VISIBLE
 
 
-                }
-                is StateAction.ERROR -> {
-                    binding.recyclerView.visibility = View.GONE
-                    binding.swipeRefresh.visibility = View.GONE
+                        }
+                        is StateAction.ERROR -> {
+                            showToastMessage("Loading from local")
+                            binding.recyclerView.visibility = View.GONE
+                            binding.swipeRefresh.visibility = View.GONE
 
-                    displayErrors(state.error.localizedMessage) {
-                        networkViewModel.getCountryList()
+                            displayErrors(state.error.localizedMessage) {
+                                networkViewModel.getCountryList()
+                            }
+                        }
+                        else -> {}
                     }
                 }
             }
 
         }
-        //networkViewModel.getCountryList()
+
         return binding.root
     }
+
 
     override fun onResume() {
         super.onResume()

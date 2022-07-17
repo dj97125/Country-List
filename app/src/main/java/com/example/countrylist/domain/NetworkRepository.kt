@@ -3,6 +3,7 @@ package com.example.countrylist.model.network.CountryRepository
 
 import com.example.countrylist.common.InternetCheck
 import com.example.countrylist.common.StateAction
+import com.example.countrylist.domain.Country
 import com.example.countrylist.model.local.LocalDataSource
 import com.example.countrylist.model.network.RemoteDataSource
 import kotlinx.coroutines.flow.Flow
@@ -11,7 +12,7 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 interface NetworkRepository {
-    suspend fun countryList(): Flow<StateAction>
+    fun countryList(): Flow<StateAction>
 }
 
 class NetworkRepositoryImpl @Inject constructor(
@@ -20,23 +21,27 @@ class NetworkRepositoryImpl @Inject constructor(
 ) : NetworkRepository {
 
 
-    override suspend fun countryList() = flow {
+    override fun countryList(): Flow<StateAction> = flow {
         val connected = InternetCheck()
+        val remoteService = remoteDataSource.countryCached()
         if (connected.isConnected()) {
-            val remoteService = remoteDataSource.countryCached()
-            remoteService.collect { stateAction ->
+            remoteService.collect() { stateAction ->
                 when (stateAction) {
                     is StateAction.SUCCESS<*> -> {
-                        remoteDataSource.countryCached()
-                        localDataSource.insertLocalCountry(stateAction)
+                        val retrievedCountries = stateAction.response as List<Country>
+                        emit(StateAction.SUCCESS(retrievedCountries))
+                        localDataSource.insertLocalCountry(retrievedCountries).collect()
+
+
                     }
 
-                    is StateAction.ERROR -> {
-                        localDataSource.getAllCachedCountries()
-                    }
                 }
             }
-        }
+        } else {
+            localDataSource.getAllCachedCountries()
 
+        }
     }
 }
+
+
