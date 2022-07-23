@@ -7,8 +7,9 @@ import com.example.countrylist.domain.Country
 import com.example.countrylist.model.local.LocalDataSource
 import com.example.countrylist.model.network.RemoteDataSource
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.buffer
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 interface NetworkRepository {
@@ -25,20 +26,20 @@ class NetworkRepositoryImpl @Inject constructor(
         val connected = InternetCheck()
         val remoteService = remoteDataSource.countryCached()
         if (connected.isConnected()) {
-            remoteService.collect() { stateAction ->
+            remoteService.buffer().collect() { stateAction ->
                 when (stateAction) {
                     is StateAction.SUCCESS<*> -> {
                         val retrievedCountries = stateAction.response as List<Country>
                         emit(StateAction.SUCCESS(retrievedCountries))
-                        localDataSource.insertLocalCountry(retrievedCountries).collect()
+                        localDataSource.insertLocalCountry(retrievedCountries)
 
 
                     }
-
                 }
             }
         } else {
-            localDataSource.getAllCachedCountries()
+            val cache = localDataSource.getAllCachedCountries()
+            emit(StateAction.SUCCESS(cache))
 
         }
     }

@@ -75,7 +75,7 @@ object ServiceModule {
 
     @Singleton
     @Provides
-    fun provideCountryDao(dataBase: CountryDataBase): CountryDao = dataBase.countryDao()
+    fun provideCountryDao(dataBase: CountryDataBase) = dataBase.countryDao()
 }
 
 @Module()

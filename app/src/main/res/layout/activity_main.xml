@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".view.MainActivity">
+    tools:context=".presentation.view.MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/navHostFragment"
-        android:name="com.example.countrylist.view.FragmentCountriesList"
+        android:name="com.example.countrylist.presentation.view.FragmentCountriesList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:defaultNavHost="true"

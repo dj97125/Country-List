@@ -1,6 +1,8 @@
 package com.example.countrylist.model.local.DataBase
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.room.Room
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.filters.SmallTest
 import com.example.countrylist.di.ServiceModule
 import com.example.countrylist.model.local.CountryDao
@@ -33,7 +35,7 @@ import javax.inject.Inject
 @SmallTest
 @HiltAndroidTest
 class CountryEntityDataBaseTest @Inject constructor(
-   @TestDB private val dataBase: CountryDataBase
+  @TestDB private var dataBase: CountryDataBase
 ) {
 
 
@@ -43,45 +45,45 @@ class CountryEntityDataBaseTest @Inject constructor(
     @get:Rule(order = 2)
     var rule = InstantTaskExecutorRule()
 
+//    var dataBase = Room.inMemoryDatabaseBuilder(
+//        ApplicationProvider.getApplicationContext(),
+//        CountryDataBase::class.java
+//    ).allowMainThreadQueries().build()
+
 
     lateinit var countryDao: CountryDao
+
+    val countryEntityLists = listOf(
+        CountryEntity( 1,"uno", "uno", "uno", "uno"),
+        CountryEntity( 2, "dos", "dos", "dos", "dos")
+    )
 
 
     @Before
     fun setup() {
-//        dataBase = Room.inMemoryDatabaseBuilder(
-//            ApplicationProvider.getApplicationContext(),
-//            CountryDataBase::class.java
-//        ).allowMainThreadQueries().build()
+
         hiltRule.inject()
         countryDao = dataBase.countryDao()
     }
 
     @After
     fun closeDataBaseCountry() {
+
         dataBase.close()
     }
 
     @Test
     fun insertLocalCountry() = runTest {
-        val countryEntities = listOf(
-            CountryEntity( "uno", "uno", "uno", "uno"),
-            CountryEntity( "dos", "dos", "dos", "dos"),
-        )
-        countryDao.insertLocalCountry(countryEntities)
 
+        countryDao.insertLocalCountry(countryEntityLists)
         val allCountries = countryDao.getAllCachedCountries()
-
-        assertThat(allCountries).contains(countryEntities)
+        assertThat(allCountries).contains(countryEntityLists)
 
     }
 
     @Test
     fun deleteAllCountryLocalItem() = runTest {
-        val countryEntityLists = listOf(
-            CountryEntity( "uno", "uno", "uno", "uno"),
-            CountryEntity( "dos", "dos", "dos", "dos")
-        )
+
 
         countryDao.insertLocalCountry(countryEntityLists)
         countryDao.deleteAllCountryLocalItem()
@@ -94,13 +96,8 @@ class CountryEntityDataBaseTest @Inject constructor(
 
     @Test
     fun getAllCachedCountries() = runTest {
-        val countryEntityLists = listOf(
-            CountryEntity( "uno", "uno", "uno", "uno"),
-            CountryEntity( "dos", "dos", "dos", "dos")
-        )
+
         countryDao.insertLocalCountry(countryEntityLists)
-
-
 
         val totalCountries = countryDao.getAllCachedCountries()
 

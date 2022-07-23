@@ -1,5 +1,6 @@
 package com.example.countrylist.model.local.DataBase.DI
 
+import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.example.countrylist.common.DATABASE_NAME
@@ -26,11 +27,13 @@ object TestAppModule {
     @Provides
     @Singleton
     @TestDB
-    fun provideInMemoryDb(@ApplicationContext context: Context) =
-        Room.inMemoryDatabaseBuilder(context, CountryDataBase::class.java).build()
+    fun provideInMemoryDb(app: Application) = Room.inMemoryDatabaseBuilder(
+        app,
+        CountryDataBase::class.java
+    ).allowMainThreadQueries().build()
 
     @Singleton
     @Provides
-    fun provideCountryDao(@TestDB dataBase: CountryDataBase): CountryDao = dataBase.countryDao()
+    fun provideCountryDao(@TestDB dataBase: CountryDataBase) = dataBase.countryDao()
 
 }

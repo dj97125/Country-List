@@ -1,4 +1,4 @@
-package com.example.countrylist.view
+package com.example.countrylist.presentation.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,9 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.countrylist.common.BaseFragment
 import com.example.countrylist.common.StateAction
 import com.example.countrylist.databinding.FragmentCountriesListBinding
-import com.example.countrylist.domain.Adapters.CountryListAdapter
+import com.example.countrylist.presentation.adapters.CountryListAdapter
 import com.example.countrylist.domain.Country
-import com.example.countrylist.model.local.CountryEntity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -56,19 +55,24 @@ class FragmentCountriesList : BaseFragment() {
 
                             binding.recyclerView.visibility = View.VISIBLE
                             binding.swipeRefresh.visibility = View.VISIBLE
+                            binding.progressBar.visibility = View.GONE
 
 
                         }
                         is StateAction.ERROR -> {
-                            showToastMessage("Loading from local")
+                            showToastMessage("Error in Response")
                             binding.recyclerView.visibility = View.GONE
                             binding.swipeRefresh.visibility = View.GONE
+                            binding.progressBar.visibility = View.GONE
 
                             displayErrors(state.error.localizedMessage) {
                                 networkViewModel.getCountryList()
                             }
                         }
-                        else -> {}
+                        is StateAction.LOADING ->{
+                            binding.progressBar.visibility = View.VISIBLE
+
+                        }
                     }
                 }
             }

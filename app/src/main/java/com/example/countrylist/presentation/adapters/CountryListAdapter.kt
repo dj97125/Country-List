@@ -1,11 +1,10 @@
-package com.example.countrylist.domain.Adapters
+package com.example.countrylist.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.countrylist.databinding.CountriesListCardViewBinding
 import com.example.countrylist.domain.Country
-import com.example.countrylist.model.local.CountryEntity
 
 
 class CountryListAdapter(

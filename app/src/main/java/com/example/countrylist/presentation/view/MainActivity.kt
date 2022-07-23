@@ -1,4 +1,4 @@
-package com.example.countrylist.view
+package com.example.countrylist.presentation.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -1,16 +1,15 @@
 package com.example.countrylist.model.local
 
+import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
 data class CountryEntity(
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    val id: Int?,
+    @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "capital")
-    val capital: String?,
+    val capital: String,
     @ColumnInfo(name = "code")
     val code: String?,
     @ColumnInfo(name = "name")

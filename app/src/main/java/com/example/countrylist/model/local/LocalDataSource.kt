@@ -1,16 +1,17 @@
 package com.example.countrylist.model.local
 
-import com.example.countrylist.common.FailedCache
+import android.util.Log
 import com.example.countrylist.common.StateAction
 import com.example.countrylist.domain.Country
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
-import com.example.countrylist.model.local.CountryEntity as DbCountry
 
 interface LocalDataSource {
     fun getAllCachedCountries(): Flow<StateAction>
-    fun insertLocalCountry(country: List<Country>): Flow<Unit>
+    suspend fun insertLocalCountry(country: List<Country>): Flow<StateAction>
+    suspend fun deleteAllCountryLocalItem()
 }
 
 class RoomDataSource @Inject constructor(
@@ -19,32 +20,45 @@ class RoomDataSource @Inject constructor(
 
     override fun getAllCachedCountries(): Flow<StateAction> = flow {
         val cache = countryDao.getAllCachedCountries()
+        if (cache.isNotEmpty()) {
             emit(StateAction.SUCCESS(cache.map { it.toDomainModel() }))
+        }
     }
 
-    override fun insertLocalCountry(country: List<Country>): Flow<Unit> = flow {
-        countryDao.insertLocalCountry(country.fromDomainModel())
+    override suspend fun insertLocalCountry(country: List<Country>): Flow<StateAction> = flow {
+        emit(StateAction.SUCCESS(country))
+    }.onEach {
+//        val countries = it.response
+//        countryDao.insertLocalCountry(countries.fromDomainModel())
+
+        StateAction.SUCCESS(countryDao.insertLocalCountry(it.response.fromDomainModel()))
+//        Log.d("LOcal", "insertLocalCountry: $countries")
+
     }
+
+    override suspend fun deleteAllCountryLocalItem() {
+        return countryDao.deleteAllCountryLocalItem()
+    }
+
 
 }
 
-private fun List<DbCountry>.toDomainModel(): List<Country> = map {
+private fun List<CountryEntity>.toDomainModel(): List<Country> = map {
     it.toDomainModel()
 }
 
-private fun List<Country>.fromDomainModel(): List<DbCountry> = map {
+private fun List<Country>.fromDomainModel(): List<CountryEntity> = map {
     it.fromDomainModel()
 }
 
-private fun DbCountry.toDomainModel(): Country = Country(
+private fun CountryEntity.toDomainModel(): Country = Country(
     capital,
     code,
     name,
     region
 )
 
-private fun Country.fromDomainModel(): DbCountry = DbCountry(
-    id = 0,
+private fun Country.fromDomainModel(): CountryEntity = CountryEntity(
     capital,
     code,
     name,
