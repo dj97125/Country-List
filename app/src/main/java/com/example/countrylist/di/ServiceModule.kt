@@ -4,13 +4,12 @@ import android.content.Context
 import androidx.room.Room
 import com.example.countrylist.common.BASE_URL
 import com.example.countrylist.common.DATABASE_NAME
-import com.example.countrylist.model.local.CountryDao
 import com.example.countrylist.model.local.CountryDataBase
 import com.example.countrylist.model.local.LocalDataSource
 import com.example.countrylist.model.local.RoomDataSource
-import com.example.countrylist.model.network.NetworkAPI
 import com.example.countrylist.model.network.CountryRepository.NetworkRepository
 import com.example.countrylist.model.network.CountryRepository.NetworkRepositoryImpl
+import com.example.countrylist.model.network.NetworkAPI
 import com.example.countrylist.model.network.RemoteDataSource
 import com.example.countrylist.model.network.ServiceDataSource
 import dagger.Binds
@@ -19,7 +18,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -71,7 +69,8 @@ object ServiceModule {
     @Singleton
     @Provides
     fun provideRoom(@ApplicationContext context: Context): CountryDataBase =
-        Room.databaseBuilder(context, CountryDataBase::class.java, DATABASE_NAME).fallbackToDestructiveMigration().build()
+        Room.databaseBuilder(context, CountryDataBase::class.java, DATABASE_NAME)
+            .fallbackToDestructiveMigration().build()
 
     @Singleton
     @Provides
@@ -91,7 +90,7 @@ abstract class ViewModelBindModule {
 
 @Module()
 @InstallIn(SingletonComponent::class)
-abstract class RepositoryBindModule{
+abstract class RepositoryBindModule {
 
     @Binds
     abstract fun bindLocalDataSource(

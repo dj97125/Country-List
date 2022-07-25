@@ -22,7 +22,7 @@ class NetworkViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _countryResponse: MutableStateFlow<StateAction?> =
-        MutableStateFlow(StateAction.LOADING)
+        MutableStateFlow(null)
     val countryResponse: StateFlow<StateAction?>
         get() = _countryResponse.asStateFlow()
 
@@ -57,6 +57,7 @@ class NetworkViewModel @Inject constructor(
                                 val retrievedCountries = stateAction.response as List<Country>
                                 _countryResponse.value = StateAction.SUCCESS(retrievedCountries)
                             }
+
                         }
                     }
                 }

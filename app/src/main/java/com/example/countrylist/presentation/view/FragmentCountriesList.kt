@@ -48,7 +48,6 @@ class FragmentCountriesList : BaseFragment() {
                 networkViewModel.countryResponse.collect { state ->
                     when (state) {
                         is StateAction.SUCCESS<*> -> {
-                            showToastMessage("Loading from server")
                             val retrievedCountries = state.response as List<Country>
 
                             networkAdapter.updateData(retrievedCountries)
@@ -68,10 +67,6 @@ class FragmentCountriesList : BaseFragment() {
                             displayErrors(state.error.localizedMessage) {
                                 networkViewModel.getCountryList()
                             }
-                        }
-                        is StateAction.LOADING ->{
-                            binding.progressBar.visibility = View.VISIBLE
-
                         }
                     }
                 }

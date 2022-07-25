@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CountryDao {
@@ -14,7 +15,7 @@ interface CountryDao {
     @Query("DELETE FROM CountryEntity")
     suspend fun deleteAllCountryLocalItem()
 
-    @Query("SELECT * FROM CountryEntity order by name")
+    @Query("SELECT * FROM CountryEntity order by id")
     suspend fun getAllCachedCountries(): List<CountryEntity>
 
 }

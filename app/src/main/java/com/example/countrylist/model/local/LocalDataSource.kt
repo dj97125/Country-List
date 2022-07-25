@@ -1,11 +1,11 @@
 package com.example.countrylist.model.local
 
 import android.util.Log
+import com.example.countrylist.common.NullResponseException
 import com.example.countrylist.common.StateAction
 import com.example.countrylist.domain.Country
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 interface LocalDataSource {
@@ -20,23 +20,23 @@ class RoomDataSource @Inject constructor(
 
     override fun getAllCachedCountries(): Flow<StateAction> = flow {
         val cache = countryDao.getAllCachedCountries()
-        if (cache.isNotEmpty()) {
+        cache.let {
             emit(StateAction.SUCCESS(cache.map { it.toDomainModel() }))
+            Log.d("LocalDataSource", "getAllCountries: $it")
         }
+
+
+
     }
 
     override suspend fun insertLocalCountry(country: List<Country>): Flow<StateAction> = flow {
-        emit(StateAction.SUCCESS(country))
-    }.onEach {
-//        val countries = it.response
-//        countryDao.insertLocalCountry(countries.fromDomainModel())
-
-        StateAction.SUCCESS(countryDao.insertLocalCountry(it.response.fromDomainModel()))
-//        Log.d("LOcal", "insertLocalCountry: $countries")
+        countryDao.insertLocalCountry(country.fromDomainModel())
+        Log.d("LocalDataSource", "insertLocalCountry: ${country.size}")
 
     }
 
     override suspend fun deleteAllCountryLocalItem() {
+
         return countryDao.deleteAllCountryLocalItem()
     }
 
@@ -52,17 +52,18 @@ private fun List<Country>.fromDomainModel(): List<CountryEntity> = map {
 }
 
 private fun CountryEntity.toDomainModel(): Country = Country(
-    capital,
-    code,
-    name,
-    region
+    capital = capital,
+    code = code,
+    name = name,
+    region = region
 )
 
 private fun Country.fromDomainModel(): CountryEntity = CountryEntity(
-    capital,
-    code,
-    name,
-    region
+    id = 0,
+    capital = capital,
+    code = code,
+    name = name,
+    region = region
 )
 
 

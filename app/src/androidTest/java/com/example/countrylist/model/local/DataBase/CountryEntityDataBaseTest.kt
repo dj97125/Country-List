@@ -1,8 +1,6 @@
 package com.example.countrylist.model.local.DataBase
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.filters.SmallTest
 import com.example.countrylist.di.ServiceModule
 import com.example.countrylist.model.local.CountryDao
@@ -35,7 +33,7 @@ import javax.inject.Inject
 @SmallTest
 @HiltAndroidTest
 class CountryEntityDataBaseTest @Inject constructor(
-  @TestDB private var dataBase: CountryDataBase
+    @TestDB private var dataBase: CountryDataBase
 ) {
 
 
@@ -54,8 +52,8 @@ class CountryEntityDataBaseTest @Inject constructor(
     lateinit var countryDao: CountryDao
 
     val countryEntityLists = listOf(
-        CountryEntity( 1,"uno", "uno", "uno", "uno"),
-        CountryEntity( 2, "dos", "dos", "dos", "dos")
+        CountryEntity(1, "uno", "uno", "uno", "uno"),
+        CountryEntity(2, "dos", "dos", "dos", "dos")
     )
 
 
