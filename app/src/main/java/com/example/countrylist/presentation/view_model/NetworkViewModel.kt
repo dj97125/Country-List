@@ -46,6 +46,7 @@ class NetworkViewModel @Inject constructor(
 
     fun getCountryList() {
         val handler = CoroutineExceptionHandler { _, throwable ->
+            _countryResponse.value = StateAction.ERROR(throwable)
             Log.d("ViewModel", "$throwable")
         }
         coroutineScope.launch(handler) {

@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.countrylist.common.BASE_URL
 import com.example.countrylist.common.DATABASE_NAME
+import com.example.countrylist.model.local.CountryDao
 import com.example.countrylist.model.local.CountryDataBase
 import com.example.countrylist.model.local.LocalDataSource
 import com.example.countrylist.model.local.RoomDataSource
@@ -34,11 +35,16 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object ServiceModule {
 
+    @Provides
+    @Singleton
+    @ApiUrl
+    fun provideUrl(): String = BASE_URL
+
     @Singleton
     @Provides
-    fun provideNycService(): NetworkAPI =
+    fun provideNycService(@ApiUrl apiUrl : String): NetworkAPI =
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(apiUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .client(provideOkHttpClient())
             .build()
@@ -68,13 +74,18 @@ object ServiceModule {
 
     @Singleton
     @Provides
+    @ProductionDB
     fun provideRoom(@ApplicationContext context: Context): CountryDataBase =
-        Room.databaseBuilder(context, CountryDataBase::class.java, DATABASE_NAME)
-            .fallbackToDestructiveMigration().build()
+        Room.databaseBuilder(
+            context,
+            CountryDataBase::class.java, DATABASE_NAME
+        ).fallbackToDestructiveMigration().build()
+
 
     @Singleton
     @Provides
-    fun provideCountryDao(dataBase: CountryDataBase) = dataBase.countryDao()
+    fun provideCountryDao(@ProductionDB dataBase: CountryDataBase) = dataBase.countryDao()
+
 }
 
 @Module()
@@ -85,6 +96,7 @@ abstract class ViewModelBindModule {
     abstract fun bindRepository(
         networkRepositoryImpl: NetworkRepositoryImpl
     ): NetworkRepository
+
 
 }
 

@@ -1,4 +1,4 @@
-package com.example.countrylist.model.local.DataBase.DI
+package com.example.countrylist.di
 
 import javax.inject.Qualifier
 
