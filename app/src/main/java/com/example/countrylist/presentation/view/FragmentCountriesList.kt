@@ -48,8 +48,9 @@ class FragmentCountriesList : BaseFragment() {
                 networkViewModel.countryResponse.collect { state ->
                     when (state) {
                         is StateAction.SUCCESS<*> -> {
+                            val retrievedMessage = state.message
                             val retrievedCountries = state.response as List<Country>
-
+                            showToastMessage(retrievedMessage)
                             networkAdapter.updateData(retrievedCountries)
 
                             binding.recyclerView.visibility = View.VISIBLE
@@ -59,7 +60,6 @@ class FragmentCountriesList : BaseFragment() {
 
                         }
                         is StateAction.ERROR -> {
-                            showToastMessage("Error in Response")
                             binding.recyclerView.visibility = View.GONE
                             binding.swipeRefresh.visibility = View.GONE
                             binding.progressBar.visibility = View.GONE

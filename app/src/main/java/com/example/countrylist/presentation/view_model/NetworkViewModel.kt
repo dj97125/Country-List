@@ -1,6 +1,5 @@
 package com.example.countrylist.presentation.view_model
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.countrylist.common.StateAction
 import com.example.countrylist.domain.Country
@@ -18,7 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class NetworkViewModel @Inject constructor(
     private val useCase: UseCase,
-    private val coroutineScope: CoroutineScope
+    private val coroutineScope: CoroutineScope,
+    private val handler: CoroutineExceptionHandler
 ) : ViewModel() {
 
     private val _countryResponse: MutableStateFlow<StateAction?> =
@@ -31,32 +31,21 @@ class NetworkViewModel @Inject constructor(
         getCountryList()
     }
 
-//    fun getCountryList() {
-//        coroutineScope.launch {
-//            useCase().collect() { stateAction ->
-//                when (stateAction) {
-//                    is StateAction.SUCCESS<*> -> {
-//                        val retrievedCountries = stateAction.response as List<Country>
-//                        _countryResponse.value = StateAction.SUCCESS(retrievedCountries)
-//                    }
-//                }
-//            }
-//        }
-//    }
 
     fun getCountryList() {
-        val handler = CoroutineExceptionHandler { _, throwable ->
-            _countryResponse.value = StateAction.ERROR(throwable)
-            Log.d("ViewModel", "$throwable")
-        }
         coroutineScope.launch(handler) {
             supervisorScope {
                 launch {
                     useCase().collect() { stateAction ->
                         when (stateAction) {
                             is StateAction.SUCCESS<*> -> {
+                                val retrievedMessage = stateAction.message
                                 val retrievedCountries = stateAction.response as List<Country>
-                                _countryResponse.value = StateAction.SUCCESS(retrievedCountries)
+                                _countryResponse.value = StateAction.SUCCESS(retrievedCountries,retrievedMessage)
+                            }
+                            is StateAction.ERROR -> {
+                                val retrievedError = stateAction.error
+                                _countryResponse.value = StateAction.ERROR(retrievedError)
                             }
 
                         }

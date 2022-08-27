@@ -1,6 +1,7 @@
 package com.example.countrylist.model.network.CountryRepository
 
 
+import com.example.countrylist.common.FailedCache
 import com.example.countrylist.common.InternetCheck
 import com.example.countrylist.common.StateAction
 import com.example.countrylist.domain.Country
@@ -29,12 +30,15 @@ class NetworkRepositoryImpl @Inject constructor(
             remoteService.collect() { stateAction ->
                 when (stateAction) {
                     is StateAction.SUCCESS<*> -> {
+                        val retrievedMessage = stateAction.message
                         val retrievedCountries = stateAction.response as List<Country>
-                        emit(StateAction.SUCCESS(retrievedCountries))
+                        emit(StateAction.SUCCESS(retrievedCountries, retrievedMessage))
                         localDataSource.insertLocalCountry(retrievedCountries).collect()
-                        //localDataSource.deleteAllCountryLocalItem()
 
-
+                    }
+                    is StateAction.ERROR -> {
+                        val retrievedError = stateAction.error
+                        emit(StateAction.ERROR(retrievedError))
                     }
                 }
             }
@@ -43,8 +47,12 @@ class NetworkRepositoryImpl @Inject constructor(
             cache.collect() { stateAction ->
                 when (stateAction) {
                     is StateAction.SUCCESS<*> -> {
+                        val retrievedMessage = stateAction.message
                         val retrievedCountries = stateAction.response as List<Country>
-                        emit(StateAction.SUCCESS(retrievedCountries))
+                        emit(StateAction.SUCCESS(retrievedCountries,retrievedMessage))
+                    }
+                    is StateAction.ERROR -> {
+                        emit(StateAction.ERROR(FailedCache()))
                     }
                 }
 

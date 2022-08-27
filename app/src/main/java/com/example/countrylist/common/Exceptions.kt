@@ -16,7 +16,4 @@ class FailedCache(
     message: String = "Error: failure in the cache"
 ) : Exception(message)
 
-class FailedCacheStorage(
-    message: String = "Error: failure in cache storage"
-) : Exception(message)
 

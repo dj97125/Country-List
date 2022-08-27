@@ -24,8 +24,10 @@ class ServiceDataSource @Inject constructor(
         val service = service.getCountriesList()
         if (service.isSuccessful) {
             service.body()?.let { result ->
-                emit(StateAction.SUCCESS(result.map { it.toDomainModel() }))
+                emit(StateAction.SUCCESS(result.map { it.toDomainModel() },"Data From Network..."))
             } ?: throw NullResponseException()
+        }else{
+            emit(StateAction.ERROR(FailedResponseException()))
         }
     }
 }
